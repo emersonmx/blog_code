@@ -19,11 +19,10 @@ int main() {
     isprito.setTexture(textura);
 
     Event evento;
-    bool correndoFeitoDoido = true;
-    while (correndoFeitoDoido) {
+    while (janelis.isOpen()) {
         while (janelis.pollEvent(evento)) {
             if (evento.type == Event::Closed) {
-                correndoFeitoDoido = false;
+                janelis.close();
             }
         }
 
@@ -31,9 +30,6 @@ int main() {
         janelis.draw(isprito);
         janelis.display();
     }
-
-
-    janelis.close();
 
     return 0;
 }
