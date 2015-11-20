@@ -13,7 +13,6 @@ int main() {
     janelis.create(VideoMode(640, 480), L"Relou Uôrdi");
 
     if (!textura.loadFromFile("hello.png")) {
-        cout << "Não foi possível carregar a textura\n";
         return 1;
     }
     isprito.setTexture(textura);
