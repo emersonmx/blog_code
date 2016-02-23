@@ -4,8 +4,6 @@
  * Build: g++ -o primitives_shapes primitives_shapes.cpp -lsfml-graphics -lsfml-window -lsfml-system --std=c++11
  */
 
-#include <iostream>
-
 #include <SFML/Graphics.hpp>
 
 #include "Random.hpp"
@@ -100,8 +98,6 @@ int main() {
             count = 0;
             clearScreen = true;
         }
-
-        cout << count << endl;
 
         if (clearScreen) {
             window.clear();
