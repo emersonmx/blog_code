@@ -8,8 +8,8 @@
 
 #include "Random.hpp"
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
 
 using namespace std;
 
@@ -35,7 +35,7 @@ void randomizeCircleShape(sf::CircleShape& shape) {
 void randomizeRectangleShape(sf::RectangleShape& shape) {
     Random random;
     sf::Vector2f size = makeRandomSize(50, WINDOW_WIDTH, 50, WINDOW_HEIGHT);
-    sf::Vector2f position = makeRandomPosition(0, WINDOW_WIDTH - size.x, 
+    sf::Vector2f position = makeRandomPosition(0, WINDOW_WIDTH - size.x,
             0, WINDOW_HEIGHT - size.y);
 
     shape.setSize(size);
@@ -50,7 +50,7 @@ void randomizePoint(sf::Vertex& point) {
     point.color = makeRandomColor();
 }
 
-void randomizeLine(sf::Vertex& a, sf::Vertex& b) { 
+void randomizeLine(sf::Vertex& a, sf::Vertex& b) {
     Random random;
 
     a.position = makeRandomPosition(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT);
@@ -59,11 +59,11 @@ void randomizeLine(sf::Vertex& a, sf::Vertex& b) {
     b.color = makeRandomColor();
 }
 
-int main() { 
+int main() {
     Random random;
 
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Primitives and Shapes");
-    sf::Event event; 
+    sf::Event event;
 
     sf::RectangleShape rect;
     sf::CircleShape circle;
@@ -71,15 +71,14 @@ int main() {
     sf::Vertex line[2];
 
     int shapeType = 0;
-    int direction = 1;
     bool clearScreen = false;
     int count = 0;
 
     window.setVerticalSyncEnabled(true);
-    
+
     bool running = true;
-    while (running) { 
-        while (window.pollEvent(event)) { 
+    while (running) {
+        while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 running = false;
             }
@@ -87,14 +86,7 @@ int main() {
 
         count++;
         if (count > 500) {
-            shapeType += direction; 
-            if (shapeType < 0) {
-                shapeType = CIRCLE_TYPE;
-                direction = 1;
-            } else if (shapeType > TYPE_SIZE - 1) {
-                shapeType = TYPE_SIZE - 2;
-                direction = -1;
-            }
+            shapeType = (shapeType + 1) % TYPE_SIZE;
             count = 0;
             clearScreen = true;
         }
@@ -125,6 +117,6 @@ int main() {
 
         window.display();
     }
-    
+
     return 0;
 }
